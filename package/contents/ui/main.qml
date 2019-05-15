@@ -306,8 +306,8 @@ Item {
 
 
     Component.onCompleted: {
-        plasmoid.setAction("showdesktop", i18n("Show Desktop"), "user-desktop")
-        plasmoid.setAction("minimizeall", i18n("Minimize All Windows"), "user-desktop")
+        plasmoid.setAction("showdesktop", i18nd("plasma_applet_org.kde.plasma.showdesktop", "Show Desktop"), "user-desktop")
+        plasmoid.setAction("minimizeall", i18ndc("plasma_applet_org.kde.plasma.showdesktop", "@action", "Minimize All Windows"), "user-desktop")
     }
 
     function action_showdesktop() {

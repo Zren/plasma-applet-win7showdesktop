@@ -54,7 +54,7 @@ ConfigPage {
         RadioButton {
             exclusiveGroup: clickGroup
             checked: cfg_click_action == 'showdesktop'
-            text: 'Show Desktop'
+            text: i18nd("plasma_applet_org.kde.plasma.showdesktop", "Show Desktop")
             onClicked: {
                 cfg_click_action = 'showdesktop'
             }
@@ -63,7 +63,8 @@ ConfigPage {
         RadioButton {
             exclusiveGroup: clickGroup
             checked: cfg_click_action == 'minimizeall'
-            text: 'Minimize All'
+            text: i18ndc("plasma_applet_org.kde.plasma.showdesktop", "@action", "Minimize All Windows")
+
             onClicked: {
                 cfg_click_action = 'minimizeall'
             }
@@ -73,7 +74,7 @@ ConfigPage {
             id: clickGroup_runcommand
             exclusiveGroup: clickGroup
             checked: cfg_click_action == 'run_command'
-            text: 'Run Command'
+            text: i18n("Run Command")
             onClicked: {
                 cfg_click_action = 'run_command'
             }
@@ -119,7 +120,7 @@ ConfigPage {
             id: mousewheelGroup_runcommands
             exclusiveGroup: mousewheelGroup
             checked: cfg_mousewheel_action == 'run_commands'
-            text: 'Run Commands'
+            text: i18n("Run Commands")
             onClicked: {
                 cfg_mousewheel_action = 'run_commands'
             }
@@ -128,7 +129,7 @@ ConfigPage {
             Layout.fillWidth: true
             Text { width: indentWidth } // indent
             Label {
-                text: 'Scroll Up:'
+                text: i18n("Scroll Up:")
             }
             TextField {
                 Layout.fillWidth: true
@@ -139,7 +140,7 @@ ConfigPage {
             Layout.fillWidth: true
             Text { width: indentWidth } // indent
             Label {
-                text: 'Scroll Down:'
+                text: i18n("Scroll Down:")
             }
             TextField {
                 Layout.fillWidth: true
@@ -150,14 +151,14 @@ ConfigPage {
         RadioButton {
             exclusiveGroup: mousewheelGroup
             checked: false
-            text: 'Volume (No UI) (amixer)'
+            text: i18n("Volume (No UI) (amixer)")
             onClicked: setMouseWheelCommands('amixer -q sset Master 10%+', 'amixer -q sset Master 10%-')
         }
 
         RadioButton {
             exclusiveGroup: mousewheelGroup
             checked: false
-            text: 'Volume (UI) (qdbus)'
+            text: i18n("Volume (UI) (qdbus)")
             property string upCommand:   'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"'
             property string downCommand: 'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"'
             onClicked: setMouseWheelCommands(upCommand, downCommand)
@@ -166,7 +167,7 @@ ConfigPage {
         RadioButton {
             exclusiveGroup: mousewheelGroup
             checked: false
-            text: 'Switch Desktop (qdbus)'
+            text: i18n("Switch Desktop (qdbus)")
             property string upCommand:   'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Switch One Desktop to the Left"'
             property string downCommand: 'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Switch One Desktop to the Right"'
             onClicked: setMouseWheelCommands(upCommand, downCommand)
