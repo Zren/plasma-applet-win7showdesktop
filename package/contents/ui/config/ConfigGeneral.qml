@@ -3,10 +3,10 @@ import QtQuick 2.0
 import QtQuick.Controls 1.0
 import QtQuick.Layouts 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.calendar 2.0 as PlasmaCalendar
 import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.plasma.extras 2.0 as PlasmaExtras
+import org.kde.kirigami 2.3 as Kirigami
 
+import ".."
 import "../lib"
 
 ConfigPage {
@@ -171,6 +171,34 @@ ConfigPage {
             property string upCommand:   'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Switch One Desktop to the Left"'
             property string downCommand: 'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Switch One Desktop to the Right"'
             onClicked: setMouseWheelCommands(upCommand, downCommand)
+        }
+    }
+
+    AppletConfig {
+        id: config
+    }
+    Kirigami.FormLayout {
+        Layout.fillWidth: true
+
+        ConfigColor {
+            Kirigami.FormData.label: i18n("Edge Color:")
+            configKey: "edgeColor"
+            defaultColor: config.defaultEdgeColor
+            label: ""
+        }
+
+        ConfigColor {
+            Kirigami.FormData.label: i18n("Hovered Color:")
+            configKey: "hoveredColor"
+            defaultColor: config.defaultHoveredColor
+            label: ""
+        }
+
+        ConfigColor {
+            Kirigami.FormData.label: i18n("Presssed Color:")
+            configKey: "pressedColor"
+            defaultColor: config.defaultPressedColor
+            label: ""
         }
     }
 }

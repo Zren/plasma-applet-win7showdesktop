@@ -43,17 +43,9 @@ Item {
         }
     }
 
-    QtObject {
+    AppletConfig {
         id: config
-
-        function alpha(c, newAlpha) {
-            return Qt.rgba(c.r, c.g, c.b, newAlpha)
-        }
-        property color edgeColor: plasmoid.configuration.edgeColor || alpha(theme.textColor, 0.4)
-        property color hoveredColor: plasmoid.configuration.hoveredColor || theme.buttonBackgroundColor
-        property color pressedColor: plasmoid.configuration.pressedColor || theme.buttonHoverColor
     }
-    
 
     state: {
         if (plasmoid.formFactor == PlasmaCore.Types.Vertical) return "vertical"
