@@ -34,7 +34,14 @@ Item {
     Layout.minimumWidth: Layout.maximumWidth
     Layout.minimumHeight: Layout.maximumHeight
 
-    property int size: Math.max(1, plasmoid.configuration.size) * units.devicePixelRatio
+    property int iconSize: units.iconSizes.smallMedium
+    property int size: {
+        if (plasmoid.immutability == PlasmaCore.Types.Mutable) {
+            return iconSize
+        } else {
+            return Math.max(1, plasmoid.configuration.size) * units.devicePixelRatio
+        }
+    }
 
     state: {
         if (plasmoid.formFactor == PlasmaCore.Types.Vertical) return "vertical"
@@ -66,6 +73,7 @@ Item {
                 target: root
                 Layout.maximumWidth: plasmoid.width
                 Layout.maximumHeight: root.size // size + bottomMargin = totalHeight
+                iconSize: Math.min(plasmoid.width, units.iconSizes.smallMedium)
             }
             PropertyChanges {
                 target: buttonRect
@@ -79,6 +87,7 @@ Item {
                 target: root
                 Layout.maximumWidth: root.size // size + rightMargin = totalWidth
                 Layout.maximumHeight: plasmoid.height
+                iconSize: Math.min(plasmoid.height, units.iconSizes.smallMedium)
             }
             PropertyChanges {
                 target: buttonRect
@@ -289,6 +298,14 @@ Item {
         //     // height: parent.height
         //     onClicked: showdesktop.showDesktop()
         // }
+    }
+
+    PlasmaCore.IconItem {
+        anchors.centerIn: parent
+        visible: plasmoid.immutability == PlasmaCore.Types.Mutable
+        source: "transform-move"
+        width: units.iconSizes.smallMedium
+        height: units.iconSizes.smallMedium
     }
 
     // org.kde.plasma.mediacontrollercompact
