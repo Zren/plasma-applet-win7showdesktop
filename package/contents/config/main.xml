@@ -24,5 +24,11 @@
     <entry name="size" type="int">
       <default>3</default>
     </entry>
+    <entry name="peekingEnabled" type="bool">
+      <default>false</default>
+    </entry>
+    <entry name="peekingThreshold" type="int">
+      <default>1000</default>
+    </entry>
   </group>
 </kcfg>

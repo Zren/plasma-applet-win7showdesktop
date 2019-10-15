@@ -116,14 +116,19 @@ Item {
         }
 
         function initPeeking() {
+            // console.log('initPeeking')
+            // console.log('showingDesktop', showingDesktop)
+            // console.log('peekTimer.running', peekTimer.running)
             if (!showingDesktop) {
-                if (false) {
+                if (plasmoid.configuration.peekingEnabled) {
                     peekTimer.restart()
                 }
             }
         }
 
         function cancelPeek() {
+            // console.log('cancelPeek')
+            // console.log('peekTimer.running', peekTimer.running)
             peekTimer.stop()
             if (isPeeking) {
                 isPeeking = false
@@ -134,7 +139,7 @@ Item {
 
     Timer {
         id: peekTimer
-        interval: 1000
+        interval: plasmoid.configuration.peekingThreshold
         onTriggered: {
             showdesktop.isPeeking = true
         }
@@ -232,9 +237,11 @@ Item {
                     }
                 }
                 onEntered: {
+                    // console.log('onEntered')
                     showdesktop.initPeeking()
                 }
                 onExited: {
+                    // console.log('onExited')
                     showdesktop.cancelPeek()
                 }
 
