@@ -46,9 +46,12 @@ Item {
     QtObject {
         id: config
 
-        property color normalBorderColor: theme.buttonBackgroundColor
-        property color hoveredColor: theme.buttonBackgroundColor
-        property color pressedColor: theme.buttonHoverColor
+        function alpha(c, newAlpha) {
+            return Qt.rgba(c.r, c.g, c.b, newAlpha)
+        }
+        property color edgeColor: plasmoid.configuration.edgeColor || alpha(theme.textColor, 0.4)
+        property color hoveredColor: plasmoid.configuration.hoveredColor || theme.buttonBackgroundColor
+        property color pressedColor: plasmoid.configuration.pressedColor || theme.buttonHoverColor
     }
     
 
@@ -79,7 +82,7 @@ Item {
                 target: edgeLine
                 color: "transparent"
                 anchors.fill: edgeLine.parent
-                border.color: config.normalBorderColor
+                border.color: config.edgeColor
             }
         },
         State { name: "vertical" // ...panel (fat short button)
@@ -237,7 +240,7 @@ Item {
             Rectangle {
                 id: edgeLine
                 color: "transparent"
-                border.color: config.normalBorderColor
+                border.color: config.edgeColor
                 border.width: 1 * units.devicePixelRatio
             }
 

@@ -30,5 +30,14 @@
     <entry name="peekingThreshold" type="int">
       <default>1000</default>
     </entry>
+    <entry name="edgeColor" type="string">
+      <default></default>
+    </entry>
+    <entry name="hoveredColor" type="string">
+      <default></default>
+    </entry>
+    <entry name="pressedColor" type="string">
+      <default></default>
+    </entry>
   </group>
 </kcfg>
