@@ -45,6 +45,14 @@ Item {
     states: [
         State { name: "square"
             PropertyChanges {
+                target: root
+                Layout.minimumWidth: units.iconSizeHints.desktop
+                Layout.minimumHeight: units.iconSizeHints.desktop
+                Layout.maximumWidth: -1
+                Layout.maximumHeight: -1
+                iconSize: units.iconSizeHints.desktop
+            }
+            PropertyChanges {
                 target: buttonRect
                 y: 0
                 x: 0
