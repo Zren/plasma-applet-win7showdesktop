@@ -23,6 +23,9 @@ ConfigPage {
     property bool showDebug: false
     property int indentWidth: 24
 
+    AppletConfig {
+        id: config
+    }
 
     function setClickCommand(command) {
         cfg_click_action = 'run_command'
@@ -40,10 +43,35 @@ ConfigPage {
     ConfigSection {
         title: i18n("Look")
 
-        ConfigSpinBox {
-            before: i18n("Size:")
-            configKey: 'size'
-            suffix: i18n("px")
+        Kirigami.FormLayout {
+            Layout.fillWidth: true
+
+            ConfigSpinBox {
+                Kirigami.FormData.label: i18n("Size:")
+                configKey: 'size'
+                suffix: i18n("px")
+            }
+
+            ConfigColor {
+                Kirigami.FormData.label: i18n("Edge Color:")
+                configKey: "edgeColor"
+                defaultColor: config.defaultEdgeColor
+                label: ""
+            }
+
+            ConfigColor {
+                Kirigami.FormData.label: i18n("Hovered Color:")
+                configKey: "hoveredColor"
+                defaultColor: config.defaultHoveredColor
+                label: ""
+            }
+
+            ConfigColor {
+                Kirigami.FormData.label: i18n("Presssed Color:")
+                configKey: "pressedColor"
+                defaultColor: config.defaultPressedColor
+                label: ""
+            }
         }
     }
 
@@ -171,34 +199,6 @@ ConfigPage {
             property string upCommand:   'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Switch One Desktop to the Left"'
             property string downCommand: 'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Switch One Desktop to the Right"'
             onClicked: setMouseWheelCommands(upCommand, downCommand)
-        }
-    }
-
-    AppletConfig {
-        id: config
-    }
-    Kirigami.FormLayout {
-        Layout.fillWidth: true
-
-        ConfigColor {
-            Kirigami.FormData.label: i18n("Edge Color:")
-            configKey: "edgeColor"
-            defaultColor: config.defaultEdgeColor
-            label: ""
-        }
-
-        ConfigColor {
-            Kirigami.FormData.label: i18n("Hovered Color:")
-            configKey: "hoveredColor"
-            defaultColor: config.defaultHoveredColor
-            label: ""
-        }
-
-        ConfigColor {
-            Kirigami.FormData.label: i18n("Presssed Color:")
-            configKey: "pressedColor"
-            defaultColor: config.defaultPressedColor
-            label: ""
         }
     }
 }
