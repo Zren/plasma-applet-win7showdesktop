@@ -61,7 +61,7 @@ Item {
             }
         },
         State { name: "vertical" // ...panel (fat short button)
-        // Assume it's on the bottom. Breeze has margins of top=4 right=5 bottom=1 left=N/A
+            // Assume it's on the bottom. Breeze has margins of top=4 right=5 bottom=1 left=N/A
             PropertyChanges {
                 target: root
                 Layout.maximumWidth: plasmoid.width
