@@ -43,6 +43,15 @@ Item {
         }
     }
 
+    QtObject {
+        id: config
+
+        property color normalBorderColor: theme.buttonBackgroundColor
+        property color hoveredColor: theme.buttonBackgroundColor
+        property color pressedColor: theme.buttonHoverColor
+    }
+    
+
     state: {
         if (plasmoid.formFactor == PlasmaCore.Types.Vertical) return "vertical"
         if (plasmoid.formFactor == PlasmaCore.Types.Horizontal) return "horizontal"
@@ -66,6 +75,12 @@ Item {
                 width: plasmoid.width
                 height: plasmoid.height
             }
+            PropertyChanges {
+                target: edgeLine
+                color: "transparent"
+                anchors.fill: edgeLine.parent
+                border.color: config.normalBorderColor
+            }
         },
         State { name: "vertical" // ...panel (fat short button)
             // Assume it's on the bottom. Breeze has margins of top=4 right=5 bottom=1 left=N/A
@@ -79,6 +94,16 @@ Item {
                 target: buttonRect
                 rightMargin: 5
                 bottomMargin: 5
+            }
+            PropertyChanges {
+                target: edgeLine
+                height: 1 * units.devicePixelRatio
+            }
+            AnchorChanges {
+                target: edgeLine
+                anchors.left: edgeLine.parent.left
+                anchors.top: edgeLine.parent.top
+                anchors.right: edgeLine.parent.right
             }
         },
         State { name: "horizontal" // ...panel (thin tall button)
@@ -94,6 +119,16 @@ Item {
                 topMargin: 4
                 rightMargin: 5
                 bottomMargin: 3
+            }
+            PropertyChanges {
+                target: edgeLine
+                width: 1 * units.devicePixelRatio
+            }
+            AnchorChanges {
+                target: edgeLine
+                anchors.left: edgeLine.parent.left
+                anchors.top: edgeLine.parent.top
+                anchors.bottom: edgeLine.parent.bottom
             }
         }
     ]
@@ -175,27 +210,35 @@ Item {
         Item {
             anchors.fill: parent
 
-            Rectangle {
-                id: surfaceNormal
-                anchors.fill: parent
-                anchors.topMargin: 1
-                color: "transparent"
-                border.color: theme.buttonBackgroundColor
-            }
+            // Rectangle {
+            //     id: surfaceNormal
+            //     anchors.fill: parent
+            //     anchors.topMargin: 1
+            //     color: "transparent"
+            //     border.color: theme.buttonBackgroundColor
+            // }
 
             Rectangle {
                 id: surfaceHovered
                 anchors.fill: parent
                 anchors.topMargin: 1
-                color: theme.buttonBackgroundColor
+                color: config.hoveredColor
                 opacity: 0
             }
 
             Rectangle {
                 id: surfacePressed
                 anchors.fill: parent
-                color: theme.buttonHoverColor
+                anchors.topMargin: 1
+                color: config.pressedColor
                 opacity: 0
+            }
+
+            Rectangle {
+                id: edgeLine
+                color: "transparent"
+                border.color: config.normalBorderColor
+                border.width: 1 * units.devicePixelRatio
             }
 
             state: {
