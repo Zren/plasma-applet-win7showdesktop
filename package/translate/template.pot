@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: win7showdesktop \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-win7showdesktop\n"
-"POT-Creation-Date: 2019-10-14 17:46-0400\n"
+"POT-Creation-Date: 2019-10-14 22:45-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,51 +21,63 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:41
+#: ../contents/ui/config/ConfigGeneral.qml:44
 msgid "Look"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:44
+#: ../contents/ui/config/ConfigGeneral.qml:50
 msgid "Size:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:46
+#: ../contents/ui/config/ConfigGeneral.qml:52
 msgid "px"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:52
+#: ../contents/ui/config/ConfigGeneral.qml:56
+msgid "Edge Color:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:63
+msgid "Hovered Color:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:70
+msgid "Presssed Color:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml:80
 msgid "Click"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:77
+#: ../contents/ui/config/ConfigGeneral.qml:105
 msgid "Run Command"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:116
+#: ../contents/ui/config/ConfigGeneral.qml:144
 msgid "Mouse Wheel"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:123
+#: ../contents/ui/config/ConfigGeneral.qml:151
 msgid "Run Commands"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:132
+#: ../contents/ui/config/ConfigGeneral.qml:160
 msgid "Scroll Up:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:143
+#: ../contents/ui/config/ConfigGeneral.qml:171
 msgid "Scroll Down:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:154
+#: ../contents/ui/config/ConfigGeneral.qml:182
 msgid "Volume (No UI) (amixer)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:161
+#: ../contents/ui/config/ConfigGeneral.qml:189
 msgid "Volume (UI) (qdbus)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:170
+#: ../contents/ui/config/ConfigGeneral.qml:198
 msgid "Switch Desktop (qdbus)"
 msgstr ""
 
