@@ -283,13 +283,6 @@ Item {
         // }
     }
 
-    // PlasmaCore.ToolTipArea {
-    //     anchors.fill: parent
-    //     mainText : i18n("Show Desktop")
-    //     subText : i18n("Show the Plasma desktop")
-    //     icon : plasmoid.configuration.icon
-    // }
-
     // org.kde.plasma.mediacontrollercompact
     PlasmaCore.DataSource {
         id: executeSource
