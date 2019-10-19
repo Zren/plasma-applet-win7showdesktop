@@ -42,7 +42,7 @@ msgid "Hovered Color:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml:70
-msgid "Presssed Color:"
+msgid "Pressed Color:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml:80

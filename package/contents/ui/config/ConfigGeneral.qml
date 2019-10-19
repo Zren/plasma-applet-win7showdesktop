@@ -67,7 +67,7 @@ ConfigPage {
             }
 
             ConfigColor {
-                Kirigami.FormData.label: i18n("Presssed Color:")
+                Kirigami.FormData.label: i18n("Pressed Color:")
                 configKey: "pressedColor"
                 defaultColor: config.defaultPressedColor
                 label: ""
