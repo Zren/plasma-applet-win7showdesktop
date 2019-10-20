@@ -1,3 +1,11 @@
+## v8 - October 19 2017
+
+* Only show a edge line on the left on a horizontal panel, or the top of the button on a vertical panel.
+* Use the desktop theme textColor instead of the buttonBackgroundColor for the edge color.
+* 3 colors are now configurable. The edge line color, the hovered color, and the pressed color.
+* Enlargen the widget and show a move icon when widgets are unlocked so that it's easier to move or remove the widget.
+* Add Spanish translations by @wuniversales (Issue #4)
+
 ## v7 - September 18 2017
 
 * Configurable width/height
