@@ -1,4 +1,8 @@
-## v8 - October 19 2017
+## v9 - October 20 2019
+
+* Add Dutch translations by @Vistaus (Pull Request #6)
+
+## v8 - October 19 2019
 
 * Only show a edge line on the left on a horizontal panel, or the top of the button on a vertical panel.
 * Use the desktop theme textColor instead of the buttonBackgroundColor for the edge color.

@@ -1,4 +1,4 @@
-# Translation of win7showdesktop in LANGUAGE
+# Translation of win7showdesktop in nl
 # Copyright (C) 2019
 # This file is distributed under the same license as the win7showdesktop package.
 #
