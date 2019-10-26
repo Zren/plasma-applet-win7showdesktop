@@ -34,9 +34,26 @@ Item {
 	Layout.minimumWidth: Layout.maximumWidth
 	Layout.minimumHeight: Layout.maximumHeight
 
+	// In Latte, widgets are always Mutable.
+	property bool isInLatte: false // Latte v8
+	// Latte will set inEditMode=true when editing the dock.
+	// https://techbase.kde.org/LatteDock#latteBridge
+	property QtObject latteBridge: null // Latte v9
+	readonly property bool inLatte: latteBridge !== null
+
+	readonly property bool isWidgetUnlocked: {
+		if (isInLatte) { // Latte v8
+			return false
+		} else if (inLatte) { // Latte v9
+			return latteBridge.inEditMode
+		} else {
+			return plasmoid.immutability == PlasmaCore.Types.Mutable
+		}
+	}
+
 	property int iconSize: units.iconSizes.smallMedium
 	property int size: {
-		if (plasmoid.immutability == PlasmaCore.Types.Mutable) {
+		if (isWidgetUnlocked) {
 			return iconSize
 		} else {
 			return Math.max(1, plasmoid.configuration.size) * units.devicePixelRatio
@@ -340,7 +357,7 @@ Item {
 
 	PlasmaCore.IconItem {
 		anchors.centerIn: parent
-		visible: plasmoid.immutability == PlasmaCore.Types.Mutable
+		visible: root.isWidgetUnlocked
 		source: "transform-move"
 		width: units.iconSizes.smallMedium
 		height: units.iconSizes.smallMedium
