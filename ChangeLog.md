@@ -1,5 +1,6 @@
-## v9 - October 20 2019
+## v9 - November 4 2019
 
+* Fix detecting edit mode in Latte-Dock v8 and v9. Kubuntu 18.04 uses Latte v7, so please use win7showdesktop v7 if you're using that distro.
 * Add Dutch translations by @Vistaus (Pull Request #6)
 
 ## v8 - October 19 2019
