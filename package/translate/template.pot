@@ -1,5 +1,5 @@
 # Translation of win7showdesktop in LANGUAGE
-# Copyright (C) 2019
+# Copyright (C) 2020
 # This file is distributed under the same license as the win7showdesktop package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: win7showdesktop \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-win7showdesktop\n"
-"POT-Creation-Date: 2019-10-14 22:45-0400\n"
+"POT-Creation-Date: 2020-01-15 14:22-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,70 +17,70 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../contents/config/config.qml:6
+#: ../contents/config/config.qml
 msgid "General"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:44
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Look"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:50
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Size:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:52
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "px"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:56
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Edge Color:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:63
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Hovered Color:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:70
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Pressed Color:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:80
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Click"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:105
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Run Command"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:144
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Mouse Wheel"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:151
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Run Commands"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:160
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Scroll Up:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:171
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Scroll Down:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:182
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Volume (No UI) (amixer)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:189
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Volume (UI) (qdbus)"
 msgstr ""
 
-#: ../contents/ui/config/ConfigGeneral.qml:198
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Switch Desktop (qdbus)"
 msgstr ""
 
-#: ../contents/ui/lib/AppletVersion.qml:41
+#: ../contents/ui/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"
 msgstr ""

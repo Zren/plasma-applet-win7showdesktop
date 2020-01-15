@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: win7showdesktop \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-win7showdesktop\n"
-"POT-Creation-Date: 2019-10-14 22:45-0400\n"
+"POT-Creation-Date: 2020-01-15 14:22-0500\n"
 "PO-Revision-Date: 2019-10-20 13:31+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -18,70 +18,70 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 19.11.70\n"
 
-#: ../contents/config/config.qml:6
+#: ../contents/config/config.qml
 msgid "General"
 msgstr "Algemeen"
 
-#: ../contents/ui/config/ConfigGeneral.qml:44
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Look"
 msgstr "Uiterlijk"
 
-#: ../contents/ui/config/ConfigGeneral.qml:50
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Size:"
 msgstr "Grootte:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:52
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "px"
 msgstr "px"
 
-#: ../contents/ui/config/ConfigGeneral.qml:56
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Edge Color:"
 msgstr "Randkleur:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:63
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Hovered Color:"
 msgstr "Kleur bij overzweven met cursor:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:70
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Pressed Color:"
 msgstr "Kleur bij indrukken:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:80
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Click"
 msgstr "Klikken"
 
-#: ../contents/ui/config/ConfigGeneral.qml:105
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Run Command"
 msgstr "Opdracht uitvoeren"
 
-#: ../contents/ui/config/ConfigGeneral.qml:144
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Mouse Wheel"
 msgstr "Scrollwiel"
 
-#: ../contents/ui/config/ConfigGeneral.qml:151
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Run Commands"
 msgstr "Opdrachten uitvoeren"
 
-#: ../contents/ui/config/ConfigGeneral.qml:160
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Scroll Up:"
 msgstr "Omhoog scrollen:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:171
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Scroll Down:"
 msgstr "Omlaag scrollen:"
 
-#: ../contents/ui/config/ConfigGeneral.qml:182
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Volume (No UI) (amixer)"
 msgstr "Volume (zonder venster - amixer)"
 
-#: ../contents/ui/config/ConfigGeneral.qml:189
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Volume (UI) (qdbus)"
 msgstr "Volume (met venster - qdbus)"
 
-#: ../contents/ui/config/ConfigGeneral.qml:198
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Switch Desktop (qdbus)"
 msgstr "Overschakelen naar ander bureaublad (qdbus)"
 
-#: ../contents/ui/lib/AppletVersion.qml:41
+#: ../contents/ui/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"
 msgstr "<b>Versie:</b> %1"
