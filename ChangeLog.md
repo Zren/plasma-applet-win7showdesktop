@@ -1,3 +1,8 @@
+## v10 - February 14 2020
+
+* Detect Plasma 5.18's edit mode in order to hide the move icon (Issue #13)
+* Add brazilian portuguese translations by @kryptusql (Issue #12)
+
 ## v9 - November 4 2019
 
 * Fix detecting edit mode in Latte-Dock v8 and v9. Kubuntu 18.04 uses Latte v7, so please use win7showdesktop v7 if you're using that distro.
