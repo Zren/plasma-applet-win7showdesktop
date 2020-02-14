@@ -46,11 +46,45 @@ Item {
 			return false
 		} else if (inLatte) { // Latte v9
 			return latteBridge.inEditMode
-		} else {
-			return plasmoid.immutability == PlasmaCore.Types.Mutable
+		} else if (plasmoid.immutability != PlasmaCore.Types.Mutable) { // Plasma 5.17 and below
+			return false
+		} else { // Plasma 5.18
+			return widget.editMode
 		}
 	}
 
+	//--- containment.editMode detector
+	property var containmentInterface: null
+	readonly property bool editMode: containmentInterface ? containmentInterface.editMode : false
+	onParentChanged: {
+		if (parent) {
+			for (var obj = widget, depth = 0; !!obj; obj = obj.parent, depth++) {
+				// console.log('depth', depth, 'obj', obj)
+				if (obj.toString().startsWith('ContainmentInterface')) {
+					// desktop containment / plasmoidviewer
+					// Note: This doesn't always work. FolderViewDropArea may not yet have
+					//       ContainmentInterface as a parent when this loop runs.
+					if (typeof obj['editMode'] === 'boolean') {
+						// console.log('\t', 'obj.editMode', obj.editMode, typeof obj['editMode'])
+						widget.containmentInterface = obj
+						break
+					}
+				} else if (obj.toString().startsWith('DeclarativeDropArea')) {
+					// panel containment
+					if (typeof obj['Plasmoid'] !== 'undefined' && obj['Plasmoid'].toString().startsWith('ContainmentInterface')) {
+						if (typeof obj['Plasmoid']['editMode'] === 'boolean') {
+							// console.log('\t', 'obj.Plasmoid', obj.Plasmoid, typeof obj['Plasmoid']) // ContainmentInterface
+							// console.log('\t', 'obj.Plasmoid.editMode', obj.Plasmoid.editMode, typeof obj['Plasmoid']['editMode'])
+							widget.containmentInterface = obj.Plasmoid
+							break
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//---
 	property int iconSize: units.iconSizes.smallMedium
 	property int size: {
 		if (isWidgetUnlocked) {
