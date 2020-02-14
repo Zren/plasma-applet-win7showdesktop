@@ -29,7 +29,7 @@ import org.kde.plasma.private.showdesktop 0.1
 import org.kde.draganddrop 2.0 as DragAndDrop
 
 Item {
-	id: root
+	id: widget
 
 	Layout.minimumWidth: Layout.maximumWidth
 	Layout.minimumHeight: Layout.maximumHeight
@@ -64,6 +64,7 @@ Item {
 		id: config
 	}
 
+	//---
 	state: {
 		if (plasmoid.formFactor == PlasmaCore.Types.Vertical) return "vertical"
 		if (plasmoid.formFactor == PlasmaCore.Types.Horizontal) return "horizontal"
@@ -73,7 +74,7 @@ Item {
 	states: [
 		State { name: "square"
 			PropertyChanges {
-				target: root
+				target: widget
 				Layout.minimumWidth: units.iconSizeHints.desktop
 				Layout.minimumHeight: units.iconSizeHints.desktop
 				Layout.maximumWidth: -1
@@ -97,9 +98,9 @@ Item {
 		State { name: "vertical" // ...panel (fat short button)
 			// Assume it's on the bottom. Breeze has margins of top=4 right=5 bottom=1 left=N/A
 			PropertyChanges {
-				target: root
+				target: widget
 				Layout.maximumWidth: plasmoid.width
-				Layout.maximumHeight: root.size // size + bottomMargin = totalHeight
+				Layout.maximumHeight: widget.size // size + bottomMargin = totalHeight
 				iconSize: Math.min(plasmoid.width, units.iconSizes.smallMedium)
 			}
 			PropertyChanges {
@@ -121,8 +122,8 @@ Item {
 		State { name: "horizontal" // ...panel (thin tall button)
 			// Assume it's on the right. Breeze has margins of top=4 right=5 bottom=1 left=N/A
 			PropertyChanges {
-				target: root
-				Layout.maximumWidth: root.size // size + rightMargin = totalWidth
+				target: widget
+				Layout.maximumWidth: widget.size // size + rightMargin = totalWidth
 				Layout.maximumHeight: plasmoid.height
 				iconSize: Math.min(plasmoid.height, units.iconSizes.smallMedium)
 			}
@@ -146,24 +147,24 @@ Item {
 	]
 
 	Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
-	Plasmoid.onActivated: root.performClick()
+	Plasmoid.onActivated: widget.performClick()
 
 	function performClick() {
 		if (plasmoid.configuration.click_action == 'minimizeall') {
 			showdesktop.minimizeAll()
 		} else if (plasmoid.configuration.click_action == 'run_command') {
-			root.exec(plasmoid.configuration.click_command)
+			widget.exec(plasmoid.configuration.click_command)
 		} else { // Default: showdesktop
 			showdesktop.showingDesktop = !showdesktop.showingDesktop
 		}
 	}
 
 	function performMouseWheelUp() {
-		root.exec(plasmoid.configuration.mousewheel_up)
+		widget.exec(plasmoid.configuration.mousewheel_up)
 	}
 
 	function performMouseWheelDown() {
-		root.exec(plasmoid.configuration.mousewheel_down)
+		widget.exec(plasmoid.configuration.mousewheel_down)
 	}
 
 	ShowDesktop {
@@ -297,7 +298,7 @@ Item {
 						peekTimer.stop()
 
 						if (true) {
-							root.performClick()
+							widget.performClick()
 						} else {
 							showdesktop.showingDesktop = false
 							showdesktop.minimizeAll()
@@ -323,11 +324,11 @@ Item {
 					// See: http://qt-project.org/doc/qt-5/qml-qtquick-wheelevent.html#angleDelta-prop
 					while (wheelDelta >= 120) {
 						wheelDelta -= 120
-						root.performMouseWheelUp()
+						widget.performMouseWheelUp()
 					}
 					while (wheelDelta <= -120) {
 						wheelDelta += 120
-						root.performMouseWheelDown()
+						widget.performMouseWheelDown()
 					}
 					wheel.accepted = true
 				}
@@ -357,7 +358,7 @@ Item {
 
 	PlasmaCore.IconItem {
 		anchors.centerIn: parent
-		visible: root.isWidgetUnlocked
+		visible: widget.isWidgetUnlocked
 		source: "transform-move"
 		width: units.iconSizes.smallMedium
 		height: units.iconSizes.smallMedium
@@ -386,6 +387,7 @@ Item {
 		plasmoid.setAction("minimizeall", i18ndc("plasma_applet_org.kde.plasma.showdesktop", "@action", "Minimize All Windows"), "user-desktop")
 	}
 
+	//---
 	function action_showdesktop() {
 		showdesktop.showingDesktop = true
 	}
