@@ -201,4 +201,26 @@ ConfigPage {
 			onClicked: setMouseWheelCommands(upCommand, downCommand)
 		}
 	}
+
+	ConfigSection {
+		title: i18n("Peek")
+
+		Kirigami.FormLayout {
+			Layout.fillWidth: true
+
+			ConfigCheckBox {
+				Kirigami.FormData.label: i18n("Show desktop on hover:")
+				configKey: "peekingEnabled"
+				text: i18n("Enable")
+			}
+
+			ConfigSpinBox {
+				Kirigami.FormData.label: i18n("Peek threshold:")
+				configKey: 'peekingThreshold'
+				suffix: i18n("ms")
+				stepSize: 50
+				minimumValue: 0
+			}
+		}
+	}
 }
