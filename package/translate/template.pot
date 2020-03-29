@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: win7showdesktop \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-win7showdesktop\n"
-"POT-Creation-Date: 2020-01-15 14:22-0500\n"
+"POT-Creation-Date: 2020-03-29 16:37-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,6 +81,30 @@ msgstr ""
 msgid "Switch Desktop (qdbus)"
 msgstr ""
 
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Peek"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Show desktop on hover:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Enable"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "Peek threshold:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
+msgid "ms"
+msgstr ""
+
 #: ../contents/ui/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Toggle Lock Widgets (Plasma 5.18)"
 msgstr ""
