@@ -417,11 +417,17 @@ Item {
 
 
 	Component.onCompleted: {
+		plasmoid.setAction("toggleLockWidgets", i18n("Toggle Lock Widgets (Plasma 5.18)"), "object-locked")
 		plasmoid.setAction("showdesktop", i18nd("plasma_applet_org.kde.plasma.showdesktop", "Show Desktop"), "user-desktop")
 		plasmoid.setAction("minimizeall", i18ndc("plasma_applet_org.kde.plasma.showdesktop", "@action", "Minimize All Windows"), "user-desktop")
 	}
 
 	//---
+	function action_toggleLockWidgets() {
+		var cmd = 'qdbus org.kde.plasmashell /PlasmaShell evaluateScript "lockCorona(!locked)"'
+		widget.exec(cmd)
+	}
+
 	function action_showdesktop() {
 		showdesktop.showingDesktop = true
 	}
