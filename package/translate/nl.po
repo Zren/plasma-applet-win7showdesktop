@@ -5,10 +5,10 @@
 # Heimen Stoffels <vistausss@outlook.com>, 2019.
 msgid ""
 msgstr ""
-"Project-Id-Version: win7showdesktop \n"
+"Project-Id-Version: win7showdesktop\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-win7showdesktop\n"
 "POT-Creation-Date: 2020-03-29 16:37-0400\n"
-"PO-Revision-Date: 2019-10-20 13:31+0200\n"
+"PO-Revision-Date: 2020-03-30 13:57+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 19.11.70\n"
+"X-Generator: Poedit 2.3\n"
 
 #: ../contents/config/config.qml
 msgid "General"
@@ -40,7 +40,7 @@ msgstr "Randkleur:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Hovered Color:"
-msgstr "Kleur bij overzweven met cursor:"
+msgstr "Kleur bij tonen zonder klikken:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Pressed Color:"
@@ -64,11 +64,11 @@ msgstr "Opdrachten uitvoeren"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Scroll Up:"
-msgstr "Omhoog scrollen:"
+msgstr "Omhoogscrollen:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Scroll Down:"
-msgstr "Omlaag scrollen:"
+msgstr "Omlaagscrollen:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Volume (No UI) (amixer)"
@@ -84,23 +84,23 @@ msgstr "Overschakelen naar ander bureaublad (qdbus)"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Peek"
-msgstr ""
+msgstr "Gluren"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show desktop on hover:"
-msgstr ""
+msgstr "Bureaublad tonen zonder klikken:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Enable"
-msgstr ""
+msgstr "Inschakelen"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Peek threshold:"
-msgstr ""
+msgstr "Gluurvertraging:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "ms"
-msgstr ""
+msgstr "ms"
 
 #: ../contents/ui/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"
@@ -108,4 +108,4 @@ msgstr "<b>Versie:</b> %1"
 
 #: ../contents/ui/main.qml
 msgid "Toggle Lock Widgets (Plasma 5.18)"
-msgstr ""
+msgstr "Widgets ver-/ontgrendelen (Plasma 5.18)"
