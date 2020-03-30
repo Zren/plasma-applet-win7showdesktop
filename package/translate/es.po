@@ -83,23 +83,23 @@ msgstr "Cambiar escritorio (qdbus)"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Peek"
-msgstr ""
+msgstr "Previsualizar"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Show desktop on hover:"
-msgstr ""
+msgstr "Mostrar escritorio al pasar el mouse:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Enable"
-msgstr ""
+msgstr "Activar"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Peek threshold:"
-msgstr ""
+msgstr "Límite de visualización:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "ms"
-msgstr ""
+msgstr "ms"
 
 #: ../contents/ui/lib/AppletVersion.qml
 msgid "<b>Version:</b> %1"
@@ -107,4 +107,4 @@ msgstr "<b>Versión:</b> %1"
 
 #: ../contents/ui/main.qml
 msgid "Toggle Lock Widgets (Plasma 5.18)"
-msgstr ""
+msgstr "Alternar widgets bloqueados (Plasma 5.18)"
