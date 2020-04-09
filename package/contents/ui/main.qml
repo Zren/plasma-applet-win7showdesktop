@@ -17,7 +17,7 @@
 	51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-import QtQuick 2.1
+import QtQuick 2.7
 import QtQuick.Layouts 1.1
 
 import org.kde.plasma.plasmoid 2.0
@@ -27,6 +27,7 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.private.showdesktop 0.1
 
 import org.kde.draganddrop 2.0 as DragAndDrop
+import org.kde.taskmanager 0.1 as TaskManager
 
 Item {
 	id: widget
@@ -185,7 +186,7 @@ Item {
 
 	function performClick() {
 		if (plasmoid.configuration.click_action == 'minimizeall') {
-			showdesktop.minimizeAll()
+			minimizeAll.toggleActive()
 		} else if (plasmoid.configuration.click_action == 'run_command') {
 			widget.exec(plasmoid.configuration.click_command)
 		} else { // Default: showdesktop
@@ -201,6 +202,8 @@ Item {
 		widget.exec(plasmoid.configuration.mousewheel_down)
 	}
 
+	//--- ShowDesktop
+	// https://github.com/KDE/plasma-desktop/blob/master/applets/showdesktop/package/contents/ui/main.qml
 	ShowDesktop {
 		id: showdesktop
 		property bool isPeeking: false
@@ -231,6 +234,72 @@ Item {
 			}
 		}
 	}
+
+	//--- MinimizeAll
+	// https://github.com/KDE/plasma-desktop/blob/master/applets/minimizeall/package/contents/ui/main.qml
+	QtObject {
+		id: minimizeAll
+		property bool active: false
+		property var minimizedClients: [] //list of persistentmodelindexes from task manager model of clients minimised by us
+
+		property var taskModel: TaskManager.TasksModel {
+			id: tasksModel
+			sortMode: TaskManager.TasksModel.SortDisabled
+			groupMode: TaskManager.TasksModel.GroupDisabled
+		}
+		property var taskModelConnection: Connections {
+			target: tasksModel
+			enabled: minimizeAll.active
+
+			onActiveTaskChanged: {
+				if (tasksModel.activeTask.valid) { //to suppress changing focus to non windows, such as the desktop
+					minimizeAll.active = false
+					minimizeAll.minimizedClients = []
+				}
+			}
+			onVirtualDesktopChanged: minimizeAll.deactivate()
+			onActivityChanged: minimizeAll.deactivate()
+		}
+
+		function activate() {
+			var clients = []
+			for (var i = 0; i < tasksModel.count; i++) {
+				var idx = tasksModel.makeModelIndex(i)
+				if (!tasksModel.data(idx, TaskManager.AbstractTasksModel.IsMinimized)) {
+					tasksModel.requestToggleMinimized(idx)
+					clients.push(tasksModel.makePersistentModelIndex(i))
+				}
+			}
+			minimizedClients = clients
+			active = true
+		}
+
+		function deactivate() {
+			active = false;
+			for (var i = 0; i < minimizedClients.length; i++) {
+				var idx = minimizedClients[i]
+				//client deleted, do nothing
+				if (!idx.valid) {
+					continue
+				}
+				//if the user has restored it already, do nothing
+				if (!tasksModel.data(idx, TaskManager.AbstractTasksModel.IsMinimized)) {
+					continue
+				}
+				tasksModel.requestToggleMinimized(idx)
+			}
+			minimizedClients = []
+		}
+
+		function toggleActive() {
+			if (active) {
+				deactivate()
+			} else {
+				activate()
+			}
+		}
+	}
+	//---
 
 	Timer {
 		id: peekTimer
@@ -335,7 +404,7 @@ Item {
 							widget.performClick()
 						} else {
 							showdesktop.showingDesktop = false
-							showdesktop.minimizeAll()
+							minimizeAll.toggleActive()
 						}
 					}
 				}
@@ -433,6 +502,6 @@ Item {
 	}
 
 	function action_minimizeall() {
-		showdesktop.minimizeAll()
+		minimizeAll.toggleActive()
 	}
 }
