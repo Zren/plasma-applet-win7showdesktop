@@ -1,3 +1,11 @@
+## v11 - April 14 2020
+
+* Restore minimizeall on second click (Issue #15)
+* Add config controls for peeking at desktop on hover (Issue #14)
+* Add contextmenu item to lock widgets in Plasma 5.18
+* Updated Spanish translations by @wuniversales (Issue #16)
+* Updated Dutch translations by @Vistaus (Pull Request #17)
+
 ## v10 - February 14 2020
 
 * Detect Plasma 5.18's edit mode in order to hide the move icon (Issue #13)
