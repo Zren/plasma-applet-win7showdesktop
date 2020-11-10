@@ -24,7 +24,7 @@ import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 // import org.kde.plasma.components 2.0 as PlasmaComponents
 
-import org.kde.plasma.private.showdesktop 0.1
+import org.kde.plasma.private.showdesktop 0.1 as ShowDesktopWidget
 
 import org.kde.draganddrop 2.0 as DragAndDrop
 import org.kde.taskmanager 0.1 as TaskManager
@@ -204,7 +204,7 @@ Item {
 
 	//--- ShowDesktop
 	// https://github.com/KDE/plasma-desktop/blob/master/applets/showdesktop/package/contents/ui/main.qml
-	ShowDesktop {
+	ShowDesktopWidget.ShowDesktop {
 		id: showdesktop
 		property bool isPeeking: false
 		onIsPeekingChanged: {
