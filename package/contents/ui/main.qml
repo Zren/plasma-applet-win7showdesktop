@@ -261,7 +261,32 @@ Item {
 			onActivityChanged: minimizeAll.deactivate()
 		}
 
+		function logClientList(clients) {
+			for (var i = 0; i < clients.length; i++) {
+				var idx = clients[i]
+				if (!idx.valid) {
+					continue
+				}
+				console.log('  ', tasksModel.data(idx, TaskManager.AbstractTasksModel.StackingOrder), tasksModel.data(idx, TaskManager.AbstractTasksModel.AppName))
+			}
+		}
+
+		function sortByStackingOrder(clients) {
+			clients.sort(function(a, b){
+				return getClientStackingOrder(a) - getClientStackingOrder(b)
+			})
+		}
+
+		function getClientStackingOrder(idx) {
+			if (!idx.valid) {
+				return 0
+			}
+			var stackingOrder = tasksModel.data(idx, TaskManager.AbstractTasksModel.StackingOrder)
+			return stackingOrder
+		}
+
 		function activate() {
+			// console.log('activate')
 			var clients = []
 			for (var i = 0; i < tasksModel.count; i++) {
 				var idx = tasksModel.makeModelIndex(i)
@@ -270,19 +295,24 @@ Item {
 					clients.push(tasksModel.makePersistentModelIndex(i))
 				}
 			}
+			// logClientList(clients)
+			sortByStackingOrder(clients)
 			minimizedClients = clients
 			active = true
 		}
 
 		function deactivate() {
+			// console.log('deactivate')
+			// logClientList(minimizedClients)
 			active = false
 			for (var i = 0; i < minimizedClients.length; i++) {
 				var idx = minimizedClients[i]
-				//client deleted, do nothing
+				// Client deleted, do nothing
 				if (!idx.valid) {
 					continue
 				}
-				//if the user has restored it already, do nothing
+
+				// If the user has restored it already, do nothing
 				if (!tasksModel.data(idx, TaskManager.AbstractTasksModel.IsMinimized)) {
 					continue
 				}
