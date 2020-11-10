@@ -275,7 +275,7 @@ Item {
 		}
 
 		function deactivate() {
-			active = false;
+			active = false
 			for (var i = 0; i < minimizedClients.length; i++) {
 				var idx = minimizedClients[i]
 				//client deleted, do nothing
