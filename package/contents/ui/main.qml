@@ -516,6 +516,13 @@ Item {
 
 
 	Component.onCompleted: {
+		// Plasma 5.21 introduced a way to ignore margins.
+		// * https://invent.kde.org/frameworks/plasma-framework/-/blob/master/src/scriptengines/qml/plasmoid/appletinterface.h#L249
+		// * https://invent.kde.org/frameworks/plasma-framework/-/blob/master/src/plasma/plasma.h#L54
+		if (plasmoid.hasOwnProperty('constraintHints')) {
+			plasmoid.constraintHints = PlasmaCore.Types.CanFillArea
+		}
+
 		plasmoid.setAction("toggleLockWidgets", i18n("Toggle Lock Widgets"), "object-locked")
 		plasmoid.setAction("showdesktop", i18nd("plasma_applet_org.kde.plasma.showdesktop", "Show Desktop"), "user-desktop")
 		plasmoid.setAction("minimizeall", i18ndc("plasma_applet_org.kde.plasma.showdesktop", "@action", "Minimize All Windows"), "user-desktop")
