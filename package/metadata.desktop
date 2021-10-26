@@ -12,7 +12,6 @@ X-KDE-PluginInfo-Version=11
 X-KDE-PluginInfo-Website=https://github.com/Zren/plasma-applet-win7showdesktop
 X-KDE-PluginInfo-Category=Windows and Tasks
 X-KDE-PluginInfo-License=GPL
-X-KDE-PluginInfo-EnabledByDefault=true
 X-Plasma-MainScript=ui/main.qml
 X-Plasma-Provides=org.kde.plasma.windowmanagement
 
