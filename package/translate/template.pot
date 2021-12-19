@@ -1,5 +1,5 @@
 # Translation of win7showdesktop in LANGUAGE
-# Copyright (C) 2020
+# Copyright (C) 2021
 # This file is distributed under the same license as the win7showdesktop package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: win7showdesktop \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-win7showdesktop\n"
-"POT-Creation-Date: 2020-03-29 16:37-0400\n"
+"POT-Creation-Date: 2021-10-09 21:32-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,5 +106,5 @@ msgid "<b>Version:</b> %1"
 msgstr ""
 
 #: ../contents/ui/main.qml
-msgid "Toggle Lock Widgets (Plasma 5.18)"
+msgid "Toggle Lock Widgets"
 msgstr ""
