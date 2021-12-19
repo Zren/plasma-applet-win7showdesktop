@@ -1,3 +1,10 @@
+## v12 - December 19 2021
+
+* Support Plasma 5.21's margins by setting `plasmoid.constraintHints` = `PlasmaCore.Types.CanFillArea` to fill up to the edges of the panel.
+* Retain stacking order when unminimizing all (Issue #18)
+* Remove (Plasma 5.18) text from "Toggle Lock Widgets" in context menu.
+* Generate a `metadata.json`
+
 ## v11 - April 14 2020
 
 * Restore minimizeall on second click (Issue #15)
