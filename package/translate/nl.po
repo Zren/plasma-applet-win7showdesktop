@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: win7showdesktop\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-win7showdesktop\n"
-"POT-Creation-Date: 2021-10-09 21:32-0400\n"
+"POT-Creation-Date: 2022-08-04 23:37-0400\n"
 "PO-Revision-Date: 2020-03-30 13:57+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
 "Language-Team: Dutch <vistausss@outlook.com>\n"
@@ -17,6 +17,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.3\n"
+
+#: ../metadata.desktop
+msgid "Show Desktop (Win7)"
+msgstr "Bureaublad tonen (Win7)"
+
+#: ../metadata.desktop
+msgid "Show the Plasma desktop"
+msgstr "Toont het Plasma-bureaublad"
 
 #: ../contents/config/config.qml
 msgid "General"

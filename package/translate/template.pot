@@ -1,21 +1,29 @@
 # Translation of win7showdesktop in LANGUAGE
-# Copyright (C) 2021
+# Copyright (C) 2022
 # This file is distributed under the same license as the win7showdesktop package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: win7showdesktop \n"
+"Project-Id-Version: win7showdesktop\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-win7showdesktop\n"
-"POT-Creation-Date: 2021-10-09 21:32-0400\n"
+"POT-Creation-Date: 2022-08-04 23:37-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: ../metadata.desktop
+msgid "Show Desktop (Win7)"
+msgstr ""
+
+#: ../metadata.desktop
+msgid "Show the Plasma desktop"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "General"
