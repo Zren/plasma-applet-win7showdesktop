@@ -502,16 +502,23 @@ Item {
 		id: executeSource
 		engine: "executable"
 		connectedSources: []
-		onNewData: {
-			//we get new data when the process finished, so we can remove it
-			disconnectSource(sourceName)
+		onNewData: disconnectSource(sourceName) // cmd finished
+		function getUniqueId(cmd) {
+			// Note: we assume that 'cmd' is executed quickly so that a previous call
+			// with the same 'cmd' has already finished (otherwise no new cmd will be
+			// added because it is already in the list)
+			// Workaround: We append spaces onto the user's command to workaround this.
+			var cmd2 = cmd
+			for (var i = 0; i < 10; i++) {
+				if (executeSource.connectedSources.includes(cmd2)) {
+					cmd2 += ' '
+				}
+			}
+			return cmd2
 		}
 	}
 	function exec(cmd) {
-		//Note: we assume that 'cmd' is executed quickly so that a previous call
-		//with the same 'cmd' has already finished (otherwise no new cmd will be
-		//added because it is already in the list)
-		executeSource.connectSource(cmd)
+		executeSource.connectSource(executeSource.getUniqueId(cmd))
 	}
 
 
