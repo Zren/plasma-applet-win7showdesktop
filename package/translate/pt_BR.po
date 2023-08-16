@@ -97,7 +97,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Enable"
-msgstr ""
+msgstr "Ativar"
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Peek threshold:"
