@@ -1,3 +1,9 @@
+## v13 - August 16 2023
+
+* Change default size from `3px` to `8px` (Issue #20)
+* Workaround the Plasma Exectuable DataEngine's "rate limiting" where a command can only run one at a time. Wheel to control volume should be better as it no longer waits for the previous `qdbus` command to finish.
+* Add a couple fr/ar translations from KDE. Update i18n scripts.
+
 ## v12 - December 19 2021
 
 * Support Plasma 5.21's margins by setting `plasmoid.constraintHints` = `PlasmaCore.Types.CanFillArea` to fill up to the edges of the panel.
