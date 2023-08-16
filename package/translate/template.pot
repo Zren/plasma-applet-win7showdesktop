@@ -1,5 +1,5 @@
 # Translation of win7showdesktop in LANGUAGE
-# Copyright (C) 2022
+# Copyright (C) 2023
 # This file is distributed under the same license as the win7showdesktop package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: win7showdesktop\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-win7showdesktop\n"
-"POT-Creation-Date: 2022-08-04 23:37-0400\n"
+"POT-Creation-Date: 2023-08-16 12:36-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
