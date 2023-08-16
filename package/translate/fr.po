@@ -17,11 +17,11 @@ msgstr ""
 
 #: ../metadata.desktop
 msgid "Show Desktop (Win7)"
-msgstr ""
+msgstr "Afficher un bureau (Win7)"
 
 #: ../metadata.desktop
 msgid "Show the Plasma desktop"
-msgstr ""
+msgstr "Afficher le bureau Plasma"
 
 #: ../contents/config/config.qml
 msgid "General"

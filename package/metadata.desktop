@@ -20,9 +20,13 @@ X-KDE-ServiceTypes=Plasma/Applet
 X-KDE-FormFactors=desktop
 
 
+Name[ar]=أظهر سطح المكتب (Win7)
 Name[es]=Mostrar el escritorio (Win7)
+Name[fr]=Afficher un bureau (Win7)
 Name[nl]=Bureaublad tonen (Win7)
 Name[pt_BR]=Exibir a área de trabalho (Win7)
+Comment[ar]=أظهر سطح مكتب بلازما
 Comment[es]=Mostrar el escritorio de Plasma
+Comment[fr]=Afficher le bureau Plasma
 Comment[nl]=Toont het Plasma-bureaublad
 Comment[pt_BR]=Mostra a área de trabalho do Plasma
