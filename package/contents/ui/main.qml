@@ -17,12 +17,12 @@
 	51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-import QtQuick 2.7
-import QtQuick.Layouts 1.1
+import QtQuick 2.15
+import QtQuick.Layouts 1.3
 
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
-// import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.plasmoid
+import org.kde.plasma.core as PlasmaCore
+// import org.kde.plasma.components as PlasmaComponents
 
 import org.kde.plasma.private.showdesktop 0.1 as ShowDesktopWidget
 
@@ -47,7 +47,7 @@ Item {
 			return false
 		} else if (inLatte) { // Latte v9
 			return latteBridge.inEditMode
-		} else if (plasmoid.immutability != PlasmaCore.Types.Mutable) { // Plasma 5.17 and below
+		} else if (Plasmoid.immutability != PlasmaCore.Types.Mutable) { // Plasma 5.17 and below
 			return false
 		} else { // Plasma 5.18
 			return widget.editMode
@@ -91,7 +91,7 @@ Item {
 		if (isWidgetUnlocked) {
 			return iconSize
 		} else {
-			return Math.max(1, plasmoid.configuration.size) * units.devicePixelRatio
+			return Math.max(1, Plasmoid.configuration.size)
 		}
 	}
 
@@ -101,8 +101,8 @@ Item {
 
 	//---
 	state: {
-		if (plasmoid.formFactor == PlasmaCore.Types.Vertical) return "vertical"
-		if (plasmoid.formFactor == PlasmaCore.Types.Horizontal) return "horizontal"
+		if (Plasmoid.formFactor == PlasmaCore.Types.Vertical) return "vertical"
+		if (Plasmoid.formFactor == PlasmaCore.Types.Horizontal) return "horizontal"
 		return "square"
 	}
 
@@ -120,8 +120,8 @@ Item {
 				target: buttonRect
 				y: 0
 				x: 0
-				width: plasmoid.width
-				height: plasmoid.height
+				width: Plasmoid.width
+				height: Plasmoid.height
 			}
 			PropertyChanges {
 				target: edgeLine
@@ -134,9 +134,9 @@ Item {
 			// Assume it's on the bottom. Breeze has margins of top=4 right=5 bottom=1 left=N/A
 			PropertyChanges {
 				target: widget
-				Layout.maximumWidth: plasmoid.width
+				Layout.maximumWidth: Plasmoid.width
 				Layout.maximumHeight: widget.size // size + bottomMargin = totalHeight
-				iconSize: Math.min(plasmoid.width, units.iconSizes.smallMedium)
+				iconSize: Math.min(Plasmoid.width, units.iconSizes.smallMedium)
 			}
 			PropertyChanges {
 				target: buttonRect
@@ -159,8 +159,8 @@ Item {
 			PropertyChanges {
 				target: widget
 				Layout.maximumWidth: widget.size // size + rightMargin = totalWidth
-				Layout.maximumHeight: plasmoid.height
-				iconSize: Math.min(plasmoid.height, units.iconSizes.smallMedium)
+				Layout.maximumHeight: Plasmoid.height
+				iconSize: Math.min(Plasmoid.height, units.iconSizes.smallMedium)
 			}
 			PropertyChanges {
 				target: buttonRect
@@ -185,21 +185,21 @@ Item {
 	Plasmoid.onActivated: widget.performClick()
 
 	function performClick() {
-		if (plasmoid.configuration.click_action == 'minimizeall') {
+		if (Plasmoid.configuration.click_action == 'minimizeall') {
 			minimizeAll.toggleActive()
-		} else if (plasmoid.configuration.click_action == 'run_command') {
-			widget.exec(plasmoid.configuration.click_command)
+		} else if (Plasmoid.configuration.click_action == 'run_command') {
+			widget.exec(Plasmoid.configuration.click_command)
 		} else { // Default: showdesktop
 			showdesktop.showingDesktop = !showdesktop.showingDesktop
 		}
 	}
 
 	function performMouseWheelUp() {
-		widget.exec(plasmoid.configuration.mousewheel_up)
+		widget.exec(Plasmoid.configuration.mousewheel_up)
 	}
 
 	function performMouseWheelDown() {
-		widget.exec(plasmoid.configuration.mousewheel_down)
+		widget.exec(Plasmoid.configuration.mousewheel_down)
 	}
 
 	//--- ShowDesktop
@@ -218,7 +218,7 @@ Item {
 			// console.log('showingDesktop', showingDesktop)
 			// console.log('peekTimer.running', peekTimer.running)
 			if (!showingDesktop) {
-				if (plasmoid.configuration.peekingEnabled) {
+				if (Plasmoid.configuration.peekingEnabled) {
 					peekTimer.restart()
 				}
 			}
@@ -333,7 +333,7 @@ Item {
 
 	Timer {
 		id: peekTimer
-		interval: plasmoid.configuration.peekingThreshold
+		interval: Plasmoid.configuration.peekingThreshold
 		onTriggered: {
 			showdesktop.isPeeking = true
 		}
@@ -350,8 +350,8 @@ Item {
 
 		y: -topMargin
 		x: -leftMargin
-		width: leftMargin + plasmoid.width + rightMargin
-		height: topMargin + plasmoid.height + bottomMargin
+		width: leftMargin + Plasmoid.width + rightMargin
+		height: topMargin + Plasmoid.height + bottomMargin
 
 		Item {
 			anchors.fill: parent
@@ -408,7 +408,7 @@ Item {
 					}
 				}
 			]
-	
+
 			transitions: [
 				Transition {
 					to: "normal"
@@ -526,13 +526,13 @@ Item {
 		// Plasma 5.21 introduced a way to ignore margins.
 		// * https://invent.kde.org/frameworks/plasma-framework/-/blob/master/src/scriptengines/qml/plasmoid/appletinterface.h#L249
 		// * https://invent.kde.org/frameworks/plasma-framework/-/blob/master/src/plasma/plasma.h#L54
-		if (plasmoid.hasOwnProperty('constraintHints')) {
-			plasmoid.constraintHints = PlasmaCore.Types.CanFillArea
+		if (Plasmoid.hasOwnProperty('constraintHints')) {
+			Plasmoid.constraintHints = PlasmaCore.Types.CanFillArea
 		}
 
-		plasmoid.setAction("toggleLockWidgets", i18n("Toggle Lock Widgets"), "object-locked")
-		plasmoid.setAction("showdesktop", i18nd("plasma_applet_org.kde.plasma.showdesktop", "Show Desktop"), "user-desktop")
-		plasmoid.setAction("minimizeall", i18ndc("plasma_applet_org.kde.plasma.showdesktop", "@action", "Minimize All Windows"), "user-desktop")
+		Plasmoid.setAction("toggleLockWidgets", i18n("Toggle Lock Widgets"), "object-locked")
+		Plasmoid.setAction("showdesktop", i18nd("plasma_applet_org.kde.plasma.showdesktop", "Show Desktop"), "user-desktop")
+		Plasmoid.setAction("minimizeall", i18ndc("plasma_applet_org.kde.plasma.showdesktop", "@action", "Minimize All Windows"), "user-desktop")
 	}
 
 	//---
