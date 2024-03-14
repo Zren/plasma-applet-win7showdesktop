@@ -26,8 +26,10 @@ PlasmoidItem {
 	Plasmoid.icon: "transform-move"
 	Plasmoid.title: activeController.title
 	Plasmoid.onActivated: {
-		if (peekController.active && activeController != peekController)
+		if (isPeeking) {
+			isPeeking = false;
 			peekController.toggle();
+		}
 		activeController.toggle();
 	}
 
@@ -41,6 +43,8 @@ PlasmoidItem {
 
 	Layout.preferredWidth: Layout.maximumWidth
 	Layout.preferredHeight: Layout.maximumHeight
+
+	Plasmoid.constraintHints: Plasmoid.CanFillArea
 
 	readonly property bool inPanel: [PlasmaCore.Types.TopEdge, PlasmaCore.Types.RightEdge, PlasmaCore.Types.BottomEdge, PlasmaCore.Types.LeftEdge]
 			.includes(Plasmoid.location)
@@ -65,6 +69,8 @@ PlasmoidItem {
 		}
 	}
 
+	property bool isPeeking: false
+
 	MouseArea {
 		id: mouseArea
 		anchors.fill: parent
@@ -75,13 +81,15 @@ PlasmoidItem {
 		onClicked: Plasmoid.activated();
 
 		onEntered: {
-			if (Plasmoid.configuration.peekingEnabled && !minimizeAllController.active && !peekController.active)
+			if (Plasmoid.configuration.peekingEnabled)
 				peekTimer.start();
 		}
 		onExited: {
 			peekTimer.stop();
-			if (peekController.active && !minimizeAllController.active)
+			if (isPeeking) {
+				isPeeking = false;
 				peekController.toggle();
+			}
 		}
 
 		// org.kde.plasma.volume
@@ -151,7 +159,12 @@ PlasmoidItem {
 		Timer {
 			id: peekTimer
 			interval: Plasmoid.configuration.peekingThreshold
-			onTriggered: peekController.toggle();
+			onTriggered: {
+				if (!minimizeAllController.active && !peekController.active) {
+					isPeeking = true;
+					peekController.toggle();
+				}
+			}
 		}
 
 		state: {
