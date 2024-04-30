@@ -1,15 +1,14 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtQuick.Layouts 1.1
-
+import QtQuick
+import QtQuick.Controls as QQC2
+import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 
-import ".."
-import "../lib"
+import ".." as Widget
+import "../libconfig" as LibConfig
 
-ConfigPage {
+
+LibConfig.FormKCM {
 	id: page
-	showAppletVersion: true
 
 	property string cfg_click_action: 'showdesktop'
 	property alias cfg_click_command: click_command.text
@@ -18,10 +17,9 @@ ConfigPage {
 	property alias cfg_mousewheel_up: mousewheel_up.text
 	property alias cfg_mousewheel_down: mousewheel_down.text
 
-	property bool showDebug: false
-	property int indentWidth: 24
+	property int indentWidth: 24 * Screen.devicePixelRatio
 
-	AppletConfig {
+	Widget.AppletConfig {
 		id: config
 	}
 
@@ -38,160 +36,184 @@ ConfigPage {
 		cfg_mousewheel_down = down
 	}
 
-	ConfigSection {
-		title: i18n("Look")
-
-		Kirigami.FormLayout {
-			Layout.fillWidth: true
-
-			ConfigSpinBox {
-				Kirigami.FormData.label: i18n("Size:")
-				configKey: 'size'
-				suffix: i18n("px")
-			}
-
-			ConfigColor {
-				Kirigami.FormData.label: i18n("Edge Color:")
-				configKey: "edgeColor"
-				defaultColor: config.defaultEdgeColor
-				label: ""
-			}
-
-			ConfigColor {
-				Kirigami.FormData.label: i18n("Hovered Color:")
-				configKey: "hoveredColor"
-				defaultColor: config.defaultHoveredColor
-				label: ""
-			}
-
-			ConfigColor {
-				Kirigami.FormData.label: i18n("Pressed Color:")
-				configKey: "pressedColor"
-				defaultColor: config.defaultPressedColor
-				label: ""
-			}
-		}
+	//-------------------------------------------------------
+	LibConfig.Heading {
+		text: i18n("Look")
+		useThickTopMargin: false
+		label.Layout.topMargin: 0
 	}
 
-	ButtonGroup { id: clickGroup }
-	ConfigSection {
-		title: i18n("Click")
+	LibConfig.SpinBox {
+		Kirigami.FormData.label: i18n("Size:")
+		configKey: 'size'
+		suffix: i18n("px")
+	}
 
-		RadioButton {
-			ButtonGroup.group: clickGroup
-			checked: cfg_click_action == 'showdesktop'
+	LibConfig.ColorField {
+		Kirigami.FormData.label: i18n("Edge Color:")
+		configKey: 'edgeColor'
+	}
+
+	LibConfig.ColorField {
+		Kirigami.FormData.label: i18n("Hovered Color:")
+		configKey: 'hoveredColor'
+	}
+
+	LibConfig.ColorField {
+		Kirigami.FormData.label: i18n("Pressed Color:")
+		configKey: 'pressedColor'
+	}
+
+
+
+	//-------------------------------------------------------
+	LibConfig.Heading {
+		text: i18n("Click")
+	}
+
+	LibConfig.RadioButtonGroup {
+		id: clickGroup
+		spacing: 2 * Screen.devicePixelRatio
+		Kirigami.FormData.isSection: true
+
+		QQC2.RadioButton {
 			text: i18nd("plasma_applet_org.kde.plasma.showdesktop", "Show Desktop")
-			onClicked: {
-				cfg_click_action = 'showdesktop'
-			}
+			QQC2.ButtonGroup.group: clickGroup.group
+			checked: cfg_click_action == 'showdesktop'
+			onClicked: cfg_click_action = 'showdesktop'
 		}
-
-		RadioButton {
-			ButtonGroup.group: clickGroup
-			checked: cfg_click_action == 'minimizeall'
+		QQC2.RadioButton {
 			text: i18ndc("plasma_applet_org.kde.plasma.showdesktop", "@action", "Minimize All Windows")
-
-			onClicked: {
-				cfg_click_action = 'minimizeall'
-			}
+			QQC2.ButtonGroup.group: clickGroup.group
+			checked: cfg_click_action == 'minimizeall'
+			onClicked: cfg_click_action = 'minimizeall'
 		}
-
-		RadioButton {
+		QQC2.RadioButton {
 			id: clickGroup_runcommand
-			ButtonGroup.group: clickGroup
-			checked: cfg_click_action == 'run_command'
 			text: i18n("Run Command")
-			onClicked: {
-				cfg_click_action = 'run_command'
-			}
+			QQC2.ButtonGroup.group: clickGroup.group
+			checked: cfg_click_action == 'run_command'
+			onClicked: cfg_click_action = 'run_command'
 		}
 		RowLayout {
 			Layout.fillWidth: true
 			Text { width: indentWidth } // indent
-			TextField {
+			QQC2.TextField {
 				Layout.fillWidth: true
 				id: click_command
+				wrapMode: QQC2.TextField.Wrap
 			}
 		}
-		RadioButton {
-			ButtonGroup.group: clickGroup
+		Rectangle {
+
+		}
+		RowLayout {
+			Layout.fillWidth: true
+			Text { width: indentWidth } // indent
+			LibConfig.Alert {
+				text: i18n("Note that in openSUSE you need to use <b>qdbus6</b> instead of <b>qdbus</b>.")
+			}
+		}
+		QQC2.RadioButton {
+			QQC2.ButtonGroup.group: clickGroup.group
 			checked: false
-			text: i18nd("kwin_effects", "Toggle Present Windows (All desktops)")
+			text: i18nd("kwin", "Toggle Present Windows (All desktops)")
 			property string command: 'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "ExposeAll"'
 			onClicked: setClickCommand(command)
 		}
-		RadioButton {
-			ButtonGroup.group: clickGroup
+		QQC2.RadioButton {
+			QQC2.ButtonGroup.group: clickGroup.group
 			checked: false
-			text: i18nd("kwin_effects", "Toggle Present Windows (Current desktop)")
+			text: i18nd("kwin", "Toggle Present Windows (Current desktop)")
 			property string command: 'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Expose"'
 			onClicked: setClickCommand(command)
 		}
-		RadioButton {
-			ButtonGroup.group: clickGroup
+		QQC2.RadioButton {
+			QQC2.ButtonGroup.group: clickGroup.group
 			checked: false
-			text: i18nd("kwin_effects", "Toggle Present Windows (Window class)")
+			text: i18nd("kwin", "Toggle Present Windows (Window class)")
 			property string command: 'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "ExposeClass"'
+			onClicked: setClickCommand(command)
+		}
+		QQC2.RadioButton {
+			QQC2.ButtonGroup.group: clickGroup.group
+			checked: false
+			text: i18ndc("kwin", "@action Overview is the name of a Kwin effect", "Toggle Overview")
+			property string command: 'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Overview"'
 			onClicked: setClickCommand(command)
 		}
 	}
 
 
-	ButtonGroup { id: mousewheelGroup }
-	ConfigSection {
-		title: i18n("Mouse Wheel")
+	//-------------------------------------------------------
+	LibConfig.Heading {
+		text: i18n("Mouse Wheel")
+	}
 
+	LibConfig.RadioButtonGroup {
+		id: mousewheelGroup
+		spacing: 0
+		Kirigami.FormData.isSection: true
 
-		RadioButton {
+		QQC2.RadioButton {
 			id: mousewheelGroup_runcommands
-			ButtonGroup.group: mousewheelGroup
-			checked: cfg_mousewheel_action == 'run_commands'
 			text: i18n("Run Commands")
-			onClicked: {
-				cfg_mousewheel_action = 'run_commands'
-			}
+			QQC2.ButtonGroup.group: mousewheelGroup.group
+			checked: cfg_mousewheel_action == 'run_commands'
+			onClicked: cfg_mousewheel_action = 'run_commands'
 		}
-		RowLayout {
+		GridLayout {
+			columns: 3
 			Layout.fillWidth: true
 			Text { width: indentWidth } // indent
-			Label {
+			QQC2.Label {
 				text: i18n("Scroll Up:")
+				Layout.alignment: Qt.AlignRight
 			}
-			TextField {
+			QQC2.TextField {
 				Layout.fillWidth: true
 				id: mousewheel_up
+				wrapMode: QQC2.TextField.Wrap
 			}
-		}
-		RowLayout {
-			Layout.fillWidth: true
+
 			Text { width: indentWidth } // indent
-			Label {
+			QQC2.Label {
 				text: i18n("Scroll Down:")
+				Layout.alignment: Qt.AlignRight
 			}
-			TextField {
+			QQC2.TextField {
 				Layout.fillWidth: true
 				id: mousewheel_down
+				wrapMode: QQC2.TextField.Wrap
+			}
+
+			Text { width: indentWidth } // indent
+			LibConfig.Alert {
+				Layout.columnSpan: 2
+				text: i18n("Note that in openSUSE you need to use <b>qdbus6</b> instead of <b>qdbus</b>.")
 			}
 		}
-
-		RadioButton {
-			ButtonGroup.group: mousewheelGroup
+		QQC2.RadioButton {
+			QQC2.ButtonGroup.group: mousewheelGroup.group
 			checked: false
 			text: i18n("Volume (No UI) (amixer)")
-			onClicked: setMouseWheelCommands('amixer -q sset Master 10%+', 'amixer -q sset Master 10%-')
+			property string upCommand:   'amixer -q sset Master 10%+'
+			property string downCommand: 'amixer -q sset Master 10%-'
+			// text: i18n("Volume (No UI) (pactl)")
+			// property string upCommand:   'pactl set-sink-volume "@DEFAULT_SINK@" "+10%"'
+			// property string downCommand: 'pactl set-sink-volume "@DEFAULT_SINK@" "-10%"'
+			onClicked: setMouseWheelCommands(upCommand, downCommand)
 		}
-
-		RadioButton {
-			ButtonGroup.group: mousewheelGroup
+		QQC2.RadioButton {
+			QQC2.ButtonGroup.group: mousewheelGroup.group
 			checked: false
 			text: i18n("Volume (UI) (qdbus)")
 			property string upCommand:   'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "increase_volume"'
 			property string downCommand: 'qdbus org.kde.kglobalaccel /component/kmix invokeShortcut "decrease_volume"'
 			onClicked: setMouseWheelCommands(upCommand, downCommand)
 		}
-
-		RadioButton {
-			ButtonGroup.group: mousewheelGroup
+		QQC2.RadioButton {
+			QQC2.ButtonGroup.group: mousewheelGroup.group
 			checked: false
 			text: i18n("Switch Desktop (qdbus)")
 			property string upCommand:   'qdbus org.kde.kglobalaccel /component/kwin invokeShortcut "Switch One Desktop to the Left"'
@@ -200,25 +222,22 @@ ConfigPage {
 		}
 	}
 
-	ConfigSection {
-		title: i18n("Peek")
 
-		Kirigami.FormLayout {
-			Layout.fillWidth: true
+	//-------------------------------------------------------
+	LibConfig.Heading {
+		text: i18n("Peek")
+	}
 
-			ConfigCheckBox {
-				Kirigami.FormData.label: i18n("Show desktop on hover:")
-				configKey: "peekingEnabled"
-				text: i18n("Enable")
-			}
-
-			ConfigSpinBox {
-				Kirigami.FormData.label: i18n("Peek threshold:")
-				configKey: 'peekingThreshold'
-				suffix: i18n("ms")
-				stepSize: 50
-				from: 0
-			}
-		}
+	LibConfig.CheckBox {
+		Kirigami.FormData.label: i18n("Show desktop on hover:")
+		text: i18n("Enable")
+		configKey: 'peekingEnabled'
+	}
+	LibConfig.SpinBox {
+		Kirigami.FormData.label: i18n("Peek threshold:")
+		configKey: 'peekingThreshold'
+		suffix: i18n("ms")
+		stepSize: 50
+		from: 0
 	}
 }
