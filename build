@@ -1,90 +1,51 @@
 #!/bin/bash
-# Version 16
+# Version 22
 
-### User Variables
+packageDir="package"
+i18nDir="package/translate"
 qtMinVer="6.6"
 kfMinVer="6.0"
 plasmaMinVer="6.0"
-filenameTag="-plasma${plasmaMinVer}"
-packageExt="plasmoid"
+filenameTag="plasma${plasmaMinVer}"
+filenameTag=`echo "$filenameTag" | sed 's/\./\-/'`
 
+function printHelp() {
+	echo "sh ./build                For building a .zip for KDE Store"
+	echo "sh ./build --i18n-only    To package for distros like Arch we only need to convert"
+	echo "                          translation files .po => .mo with gettext's msgfmt."
+}
 
-### Misc
-startDir=$PWD
+# Builds .zip or .plasmoid for uploading to https://store.kde.org
+function buildZip() {
+	python3 ./kpac --dir "$packageDir" --i18ndir "$i18nDir" \
+		build --tag "$filenameTag"
+}
 
-### Colors
-TC_Red='\033[31m'
-TC_Orange='\033[33m'
-TC_LightGray='\033[90m'
-TC_LightRed='\033[91m'
-TC_LightGreen='\033[92m'
-TC_Yellow='\033[93m'
-TC_LightBlue='\033[94m'
-TC_Bold='\033[1m'
-TC_Reset='\033[0m'
+# For distributing with distro packaging (like AUR) we only need to convert
+# the translation *.po files to *.mo files with gettext's msgfmt command.
+# Eg: "package/translate/fr.po" => "package/contents/locale/fr/LC_MESSAGES/plasma_applet_com.github.zren.widgetname.mo"
+function buildI18nOnly() {
+	python3 ./kpac --dir "$packageDir" --i18ndir "$i18nDir" \
+		i18n --no-merge
+}
 
-### Check QML Versions
-# See https://zren.github.io/kde/versions/ for distro versions
-if [ -f checkimports.py ]; then
-	python3 checkimports.py --qt="$qtMinVer" --kf="$kfMinVer" --plasma="$plasmaMinVer"
-	if [ $? == 1 ]; then
-		exit 1
-	fi
+showHelp=false
+i18nOnly=false
+for arg in "$@"; do
+	case "$arg" in
+		--i18n-only) i18nOnly=true;;
+		-h|--help) showHelp=true;;
+		*) ;;
+	esac
+done
+
+if $showHelp; then
+	# sh ./build --help
+	printHelp
+elif $i18nOnly; then
+	# sh ./build --i18n-only
+	buildI18nOnly
+else
+	# sh ./build
+	buildZip
 fi
-
-### Translations
-if [ -d "package/translate" ]; then
-	echo "[build] translate dir found, running merge."
-	(cd package/translate && sh ./merge)
-	(cd package/translate && sh ./build)
-	if [ "$(git diff --stat package/translate)" != "" ]; then
-		echo "[build] Changed detected. Cancelling build."
-		git diff --stat .
-		exit 1
-	fi
-fi
-
-
-### Variables
-packageNamespace=`kreadconfig6 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name"`
-packageName="${packageNamespace##*.}" # Strip namespace (Eg: "org.kde.plasma.")
-packageVersion=`kreadconfig6 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Version"`
-packageAuthor=`kreadconfig6 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Author"`
-packageAuthorEmail=`kreadconfig6 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Email"`
-packageWebsite=`kreadconfig6 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Website"`
-packageComment=`kreadconfig6 --file="$PWD/package/metadata.desktop" --group="Desktop Entry" --key="Comment"`
-
-### metadata.desktop => metadata.json
-if command -v desktoptojson &> /dev/null ; then
-	genOutput=`desktoptojson --serviceType="plasma-applet.desktop" -i "$PWD/package/metadata.desktop" -o "$PWD/package/metadata.json"`
-	if [ "$?" != "0" ]; then
-		exit 1
-	fi
-	# Tabify metadata.json
-	sed -i '{s/ \{4\}/\t/g}' "$PWD/package/metadata.json"
-fi
-
-
-### *.plasmoid
-
-if ! type "zip" > /dev/null; then
-	echo -e "${TC_Red}[error] 'zip' command not found.${TC_Reset}"
-	if type "zypper" > /dev/null; then
-		echo -e "${TC_Red}[error] Opensuse detected, please run: ${TC_Bold}sudo zypper install zip${TC_Reset}"
-	fi
-	exit 1
-fi
-filename="${packageName}-v${packageVersion}${filenameTag}.${packageExt}"
-rm ${packageName}-v*.${packageExt} # Cleanup
-(cd package \
-	&& zip -r $filename * \
-	&& mv $filename $startDir/$filename \
-)
-cd $startDir
-echo "[${packageExt}] md5: $(md5sum $filename | awk '{ print $1 }')"
-echo "[${packageExt}] sha256: $(sha256sum $filename | awk '{ print $1 }')"
-
-
-### Done
-cd $startDir
-
