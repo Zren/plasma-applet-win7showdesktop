@@ -322,11 +322,18 @@ PlasmoidItem {
 
 	Plasmoid.contextualActions: [
 		PlasmaCore.Action {
-			text: i18n("Toggle Lock Widgets")
-			icon.name: "object-locked"
+			visible: Plasmoid.immutability != PlasmaCore.Types.SystemImmutable
+			readonly property bool isLocked: Plasmoid.immutability != PlasmaCore.Types.Mutable
+			text: isLocked ? i18n("Unlock Widgets") : i18n("Lock Widgets")
+			icon.name: isLocked ? "object-unlocked" : "object-locked"
 			onTriggered: {
-				var cmd = 'qdbus org.kde.plasmashell /PlasmaShell evaluateScript "lockCorona(!locked)"'
-				root.exec(cmd)
+				if (Plasmoid.immutability == PlasmaCore.Types.Mutable) {
+					Plasmoid.containment.corona.setImmutability(PlasmaCore.Types.UserImmutable)
+				} else if (Plasmoid.immutability == PlasmaCore.Types.UserImmutable) {
+					Plasmoid.containment.corona.setImmutability(PlasmaCore.Types.Mutable)
+				} else {
+					// ignore SystemImmutable
+				}
 			}
 		},
 		PlasmaCore.Action {
