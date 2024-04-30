@@ -285,12 +285,14 @@ PlasmoidItem {
 		}
 	}
 
-	// org.kde.plasma.mediacontrollercompact
+	// https://invent.kde.org/plasma/plasma5support/-/tree/master/src/declarativeimports/datasource.h
 	Plasma5Support.DataSource {
 		id: executeSource
 		engine: "executable"
 		connectedSources: []
-		onNewData: disconnectSource(sourceName) // cmd finished
+		function onNewData(sourceName, data) {
+			disconnectSource(sourceName) // cmd finished
+		}
 		function getUniqueId(cmd) {
 			// Note: we assume that 'cmd' is executed quickly so that a previous call
 			// with the same 'cmd' has already finished (otherwise no new cmd will be
