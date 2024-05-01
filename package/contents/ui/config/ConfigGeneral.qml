@@ -111,7 +111,7 @@ LibConfig.FormKCM {
 			Layout.fillWidth: true
 			Text { width: indentWidth } // indent
 			LibConfig.Alert {
-				text: i18n("Note that in openSUSE you need to use <b>qdbus6</b> instead of <b>qdbus</b>.")
+				text: i18n("Note that in openSUSE, <b>qdbus</b> is automatically replaced with <b>qdbus6</b>.")
 			}
 		}
 		QQC2.RadioButton {
@@ -190,7 +190,7 @@ LibConfig.FormKCM {
 			Text { width: indentWidth } // indent
 			LibConfig.Alert {
 				Layout.columnSpan: 2
-				text: i18n("Note that in openSUSE you need to use <b>qdbus6</b> instead of <b>qdbus</b>.")
+				text: i18n("Note that in openSUSE, <b>qdbus</b> is automatically replaced with <b>qdbus6</b>.")
 			}
 		}
 		QQC2.RadioButton {

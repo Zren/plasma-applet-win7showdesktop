@@ -16,4 +16,6 @@ QtObject {
 	property color edgeColor: Plasmoid.configuration.edgeColor || defaultEdgeColor
 	property color hoveredColor: Plasmoid.configuration.hoveredColor || defaultHoveredColor
 	property color pressedColor: Plasmoid.configuration.pressedColor || defaultPressedColor
+
+	property bool isOpenSUSE: false // Replace qdbus with qdbus6 (Issue #25)
 }

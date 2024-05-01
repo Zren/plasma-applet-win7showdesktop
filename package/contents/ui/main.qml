@@ -23,6 +23,10 @@ PlasmoidItem {
 	preferredRepresentation: fullRepresentation
 	toolTipSubText: activeController.description
 
+	AppletConfig {
+		id: config
+	}
+
 	Plasmoid.icon: "transform-move"
 	Plasmoid.title: activeController.title
 	Plasmoid.onActivated: {
@@ -290,9 +294,11 @@ PlasmoidItem {
 		id: executeSource
 		engine: "executable"
 		connectedSources: []
-		function onNewData(sourceName, data) {
-			disconnectSource(sourceName) // cmd finished
-		}
+
+		property var listeners: ({}) // Empty Map
+
+		signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
+
 		function getUniqueId(cmd) {
 			// Note: we assume that 'cmd' is executed quickly so that a previous call
 			// with the same 'cmd' has already finished (otherwise no new cmd will be
@@ -300,16 +306,49 @@ PlasmoidItem {
 			// Workaround: We append spaces onto the user's command to workaround this.
 			var cmd2 = cmd
 			for (var i = 0; i < 10; i++) {
-				if (executeSource.connectedSources.includes(cmd2)) {
+				if (connectedSources.includes(cmd2)) {
 					cmd2 += ' '
 				}
 			}
 			return cmd2
 		}
+		function exec(cmd, callback) {
+			const cmdId = getUniqueId(cmd)
+			if (typeof callback === 'function') {
+				if (listeners[cmdId]) {
+					exited.disconnect(listeners[cmdId])
+					delete listeners[cmdId]
+				}
+				var listener = execCallback.bind(executeSource, callback)
+				listeners[cmdId] = listener
+			}
+			connectSource(cmdId)
+		}
+		function execCallback(callback, cmd, exitCode, exitStatus, stdout, stderr) {
+			delete listeners[cmd]
+			callback(cmd, exitCode, exitStatus, stdout, stderr)
+		}
+		onNewData: function(sourceName, data) {
+			const cmd = sourceName
+			const exitCode = data["exit code"]
+			const exitStatus = data["exit status"]
+			const stdout = data["stdout"]
+			const stderr = data["stderr"]
+			const listener = listeners[cmd]
+			if (listener) {
+				listener(cmd, exitCode, exitStatus, stdout, stderr)
+			}
+			exited(cmd, exitCode, exitStatus, stdout, stderr)
+			disconnectSource(sourceName) // cmd finished
+		}
 	}
 
 	function exec(cmd) {
-		executeSource.connectSource(executeSource.getUniqueId(cmd))
+		let cmd2 = executeSource.getUniqueId(cmd)
+		if (config.isOpenSUSE) {
+			cmd2 = cmd2.replace(/^qdbus /, 'qdbus6 ')
+		}
+		executeSource.connectSource(cmd2)
 	}
 
 	function performMouseWheelUp() {
@@ -353,4 +392,17 @@ PlasmoidItem {
 			onTriggered: peekController.toggle()
 		}
 	]
+
+	function detectSUSE() {
+		executeSource.exec('env | grep VENDOR', function(cmd, exitCode, exitStatus, stdout, stderr) {
+			if (stdout.replace(/\n/g, ' ').trim() == 'VENDOR=suse') {
+				config.isOpenSUSE = true
+			}
+			// console.log('config.isOpenSUSE', config.isOpenSUSE)
+		})
+	}
+
+	Component.onCompleted: {
+		detectSUSE()
+	}
 }
