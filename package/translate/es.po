@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: win7showdesktop \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-win7showdesktop\n"
-"POT-Creation-Date: 2024-03-14 18:09+0000\n"
+"POT-Creation-Date: 2024-05-01 10:07-0400\n"
 "PO-Revision-Date: 2019-10-19 12:36\n"
 "Last-Translator: wunivesales <universales@protonmail.com>\n"
 "Language-Team: Spanish <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../metadata.desktop
+#: ../metadata.json
 msgid "Show Desktop (Win7)"
 msgstr "Mostrar el escritorio (Win7)"
 
-#: ../metadata.desktop
+#: ../metadata.json
 msgid "Show the Plasma desktop"
 msgstr "Mostrar el escritorio de Plasma"
 
@@ -72,6 +72,10 @@ msgid "Run Command"
 msgstr "Ejecutar comando:"
 
 #: ../contents/ui/config/ConfigGeneral.qml
+msgid "Note that in openSUSE, <b>qdbus</b> is automatically replaced with <b>qdbus6</b>."
+msgstr ""
+
+#: ../contents/ui/config/ConfigGeneral.qml
 msgid "Mouse Wheel"
 msgstr "Rueda del ratón"
 
@@ -119,13 +123,13 @@ msgstr "Límite de visualización:"
 msgid "ms"
 msgstr "ms"
 
-#: ../contents/ui/lib/AppletVersion.qml
-msgid "<b>Version:</b> %1"
-msgstr "<b>Versión:</b> %1"
+#: ../contents/ui/main.qml
+msgid "Unlock Widgets"
+msgstr ""
 
 #: ../contents/ui/main.qml
-msgid "Toggle Lock Widgets"
-msgstr "Alternar widgets bloqueados"
+msgid "Lock Widgets"
+msgstr ""
 
 #: ../contents/ui/MinimizeAllController.qml
 msgctxt "@action:button"
@@ -166,3 +170,9 @@ msgstr ""
 msgctxt "@info:tooltip"
 msgid "Temporarily shows the desktop by moving windows away"
 msgstr ""
+
+#~ msgid "<b>Version:</b> %1"
+#~ msgstr "<b>Versión:</b> %1"
+
+#~ msgid "Toggle Lock Widgets"
+#~ msgstr "Alternar widgets bloqueados"
