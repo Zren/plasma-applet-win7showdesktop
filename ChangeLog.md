@@ -1,3 +1,9 @@
+## v14 - May 1 2024
+
+* Port to Plasma 6 and rebase main script on latest upstream showdesktop widget by @David-JonesDVN (Pull Request #24)
+* Detect openSUSE and replace `qdbus` in commands with `qdbus6` (Issue #25)
+* Indicate if widgets are currently locked since we can lock widgets within QML instead of `qdbus` commands in Plasma 6.
+
 ## v13 - August 16 2023
 
 * Change default size from `3px` to `8px` (Issue #20)

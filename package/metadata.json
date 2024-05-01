@@ -27,7 +27,7 @@
 		"Name[fr]": "Afficher un bureau (Win7)",
 		"Name[nl]": "Bureaublad tonen (Win7)",
 		"Name[pt_BR]": "Exibir a área de trabalho (Win7)",
-		"Version": "13",
+		"Version": "14",
 		"Website": "https://github.com/Zren/plasma-applet-win7showdesktop"
 	},
 	"X-Plasma-API-Minimum-Version": "6.0",
