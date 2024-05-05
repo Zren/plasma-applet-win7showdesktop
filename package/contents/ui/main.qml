@@ -53,6 +53,7 @@ PlasmoidItem {
 	readonly property bool inPanel: [PlasmaCore.Types.TopEdge, PlasmaCore.Types.RightEdge, PlasmaCore.Types.BottomEdge, PlasmaCore.Types.LeftEdge]
 			.includes(Plasmoid.location)
 
+	readonly property bool horizontal: Plasmoid.location === PlasmaCore.Types.TopEdge || Plasmoid.location === PlasmaCore.Types.BottomEdge
 	readonly property bool vertical: Plasmoid.location === PlasmaCore.Types.RightEdge || Plasmoid.location === PlasmaCore.Types.LeftEdge
 
 	readonly property Controller primaryController: {
@@ -223,11 +224,66 @@ PlasmoidItem {
 			opacity: mouseArea.state === "pressed" ? 1 : 0
 		}
 
-		ButtonSurface {
+		Rectangle {
 			id: edgeLine
-			color: "transparent"
-			border.color: Plasmoid.configuration.edgeColor
-			border.width: 1
+			states: [
+				State {
+					name: "desktopWidget"
+					when: !root.inPanel
+					// Draw border around button
+					AnchorChanges {
+						target: edgeLine
+						anchors.left: edgeLine.parent.left
+						anchors.right: edgeLine.parent.right
+						anchors.top: edgeLine.parent.top
+						anchors.bottom: edgeLine.parent.bottom
+					}
+					PropertyChanges {
+						target: edgeLine
+						color: "transparent"
+						border.color: Plasmoid.configuration.edgeColor
+						border.width: 1
+					}
+				},
+				State {
+					name: "horizontalPanel"
+					when: root.horizontal
+					// Draw line on left of button (assume location at right edge of panel)
+					AnchorChanges {
+						target: edgeLine
+						anchors.left: edgeLine.parent.left
+						anchors.right: undefined
+						anchors.top: edgeLine.parent.top
+						anchors.bottom: edgeLine.parent.bottom
+					}
+					PropertyChanges {
+						target: edgeLine
+						color: Plasmoid.configuration.edgeColor
+						width: 1
+						border.color: "transparent"
+						border.width: 0
+					}
+				},
+				State {
+					name: "verticalPanel"
+					when: root.vertical
+					// Draw line on top of button (assume location at bottom edge of panel)
+					AnchorChanges {
+						target: edgeLine
+						anchors.left: edgeLine.parent.left
+						anchors.right: edgeLine.parent.right
+						anchors.top: edgeLine.parent.top
+						anchors.bottom: undefined
+					}
+					PropertyChanges {
+						target: edgeLine
+						color: Plasmoid.configuration.edgeColor
+						height: 1
+						border.color: "transparent"
+						border.width: 0
+					}
+				}
+			]
 		}
 
 		// Active/not active indicator
