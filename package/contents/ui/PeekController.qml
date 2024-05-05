@@ -11,11 +11,11 @@ import org.kde.plasma.plasmoid 2.0
 Controller {
 	id: controller
 
-	titleInactive: i18nc("@action:button", "Peek at Desktop")
-	titleActive: Plasmoid.containment.corona.editMode ? titleInactive : i18nc("@action:button", "Stop Peeking at Desktop")
+	titleInactive: i18ndc("plasma_applet_org.kde.plasma.showdesktop", "@action:button", "Peek at Desktop")
+	titleActive: Plasmoid.containment.corona.editMode ? titleInactive : i18ndc("plasma_applet_org.kde.plasma.showdesktop", "@action:button", "Stop Peeking at Desktop")
 
-	descriptionActive: i18nc("@info:tooltip", "Moves windows back to their original positions")
-	descriptionInactive: i18nc("@info:tooltip", "Temporarily shows the desktop by moving windows away")
+	descriptionActive: i18ndc("plasma_applet_org.kde.plasma.showdesktop", "@info:tooltip", "Moves windows back to their original positions")
+	descriptionInactive: i18ndc("plasma_applet_org.kde.plasma.showdesktop", "@info:tooltip", "Temporarily shows the desktop by moving windows away")
 
 	active: showdesktop.showingDesktop
 

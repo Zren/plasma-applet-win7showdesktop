@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: win7showdesktop\n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-win7showdesktop\n"
-"POT-Creation-Date: 2024-05-05 12:36-0400\n"
+"POT-Creation-Date: 2024-05-05 19:08-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,44 +134,4 @@ msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Lock Widgets"
-msgstr ""
-
-#: ../contents/ui/MinimizeAllController.qml
-msgctxt "@action:button"
-msgid "Restore All Minimized Windows"
-msgstr ""
-
-#: ../contents/ui/MinimizeAllController.qml
-msgctxt "@action:button"
-msgid "Minimize All Windows"
-msgstr ""
-
-#: ../contents/ui/MinimizeAllController.qml
-msgctxt "@info:tooltip"
-msgid "Restores the previously minimized windows"
-msgstr ""
-
-#: ../contents/ui/MinimizeAllController.qml
-msgctxt "@info:tooltip"
-msgid "Shows the Desktop by minimizing all windows"
-msgstr ""
-
-#: ../contents/ui/PeekController.qml
-msgctxt "@action:button"
-msgid "Peek at Desktop"
-msgstr ""
-
-#: ../contents/ui/PeekController.qml
-msgctxt "@action:button"
-msgid "Stop Peeking at Desktop"
-msgstr ""
-
-#: ../contents/ui/PeekController.qml
-msgctxt "@info:tooltip"
-msgid "Moves windows back to their original positions"
-msgstr ""
-
-#: ../contents/ui/PeekController.qml
-msgctxt "@info:tooltip"
-msgid "Temporarily shows the desktop by moving windows away"
 msgstr ""
