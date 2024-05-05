@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: win7showdesktop \n"
 "Report-Msgid-Bugs-To: https://github.com/Zren/plasma-applet-win7showdesktop\n"
-"POT-Creation-Date: 2024-05-01 10:07-0400\n"
+"POT-Creation-Date: 2024-05-05 12:36-0400\n"
 "PO-Revision-Date: 2020-15-01 10:25-0300\n"
 "Last-Translator: Andrew Miranda <kryptusql@protonmail.com>\n"
 "Language-Team: Portuguese Brazilian <kryptusql@protonmail.com>\n"
@@ -48,6 +48,11 @@ msgstr "Tamanho:"
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "px"
 msgstr "px"
+
+#: ../contents/ui/config/ConfigGeneral.qml
+#, c-format
+msgid " + %1px (Panel Margin) = %2px"
+msgstr ""
 
 #: ../contents/ui/config/ConfigGeneral.qml
 msgid "Edge Color:"
