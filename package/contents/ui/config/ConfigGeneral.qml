@@ -23,6 +23,10 @@ LibConfig.FormKCM {
 		id: config
 	}
 
+	Widget.PanelMargins {
+		id: panelMargins
+	}
+
 	function setClickCommand(command) {
 		cfg_click_action = 'run_command'
 		clickGroup_runcommand.checked = true
@@ -43,10 +47,18 @@ LibConfig.FormKCM {
 		label.Layout.topMargin: 0
 	}
 
-	LibConfig.SpinBox {
+	RowLayout {
 		Kirigami.FormData.label: i18n("Size:")
-		configKey: 'size'
-		suffix: i18n("px")
+		LibConfig.SpinBox {
+			id: sizeSpinBox
+			configKey: 'size'
+			suffix: i18n("px")
+			from: 4 // Mouse Events are ignored with sizes smaller than 4px (Issue #26)
+		}
+		QQC2.Label {
+			readonly property int buttonTotalSize: sizeSpinBox.value + panelMargins.panelEdgeMargin
+			text: i18n(" + %1px (Panel Margin) = %2px", panelMargins.panelEdgeMargin, buttonTotalSize)
+		}
 	}
 
 	LibConfig.ColorField {

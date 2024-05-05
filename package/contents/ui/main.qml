@@ -78,9 +78,14 @@ PlasmoidItem {
 	MouseArea {
 		id: mouseArea
 		anchors.fill: parent
+		anchors.rightMargin: -panelMargins.panelEdgeMargin
 
 		activeFocusOnTab: true
 		hoverEnabled: true
+
+		PanelMargins {
+			id: panelMargins
+		}
 
 		onClicked: Plasmoid.activated();
 
